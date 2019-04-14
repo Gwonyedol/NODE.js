@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>예지의 메모</title>
+            <style>
+                table, tr, td {
+                    border: 1px solid black;
+                }
+                h1 {
+                    text-align: 'center'; 
+                }
+            </style>
+        <script>
+        </script>
+	</head>
+<body>
+	<h1>나의 메모</h1>
+	<br>
+	<form method="post" action = "/process/memosave" >
+		<table>
+			<tr>
+				<td>작성자</td>
+				<td><input type="text" name="name" /></td>
+			</tr>
+			<tr>
+				<td>작성일시</td>
+				<td><input type="text" name="date" /></td>
+			</tr>
+            <tr>
+				<td>내용</td>
+				<td><input type="text" name="text" /></td>
+			</tr>
+		</table>
+		<input type="submit" value="전송" name=""/>
+        <input type="button" value="닫기" >
+	</form>
+</body>
+</html>
