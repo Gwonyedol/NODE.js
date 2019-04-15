@@ -1,3 +1,5 @@
+//GET 방식으로..
+
 var http = require('http');
 
 var options = {
@@ -6,19 +8,20 @@ var options = {
     path: '/'
 };
 
-var req = http.get(options, function(res) {
-    // 응답 처리
-    var resData = '';
-    res.on('data', function(chunk) {
-    	resData += chunk;
+// 응답 처리
+var req = http.get(options,function(res){
+    var resData = "";
+    res.on('data',function(chunk){
+        resData += chunk;
     });
-    
-    res.on('end', function() {
-	    console.log(resData);
-	});
+
+    res.on('end',function(){
+        console.log(resData);
+    });
+
 });
 
 req.on('error', function(err) {
-    console.log("오 발생 : " + err.message);
+    console.log("오류 발생 : " + err.message);
 });
 

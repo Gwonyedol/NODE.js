@@ -2,24 +2,21 @@
 var http = require('http');
 var fs = require('fs');
 
-// 웹서버 객체를 만듭니다.
 var server = http.createServer();
 
-// 웹서버를 시작하여 3000번 포트에서 대기하도록 합니다.
 var port = 3000;
 server.listen(port, function() {
-	console.log('웹서버가 시작되었습니다. : %d', port);
+	console.log('웹서버가 시작됨: %d', port);
 });
 
-// 클라이언트 연결 이벤트 처리
 server.on('connection', function(socket) {
     var addr = socket.address();
-	console.log('클라이언트가 접속했습니다. : %s, %d', addr.address, addr.port);
+	console.log('클라이언트가 접속함: %s, %d', addr.address, addr.port);
 });
 
 // 클라이언트 요청 이벤트 처리
 server.on('request', function(req, res) {
-	console.log('클라이언트 요청이 들어왔습니다.');
+	console.log('클라이언트 요청이 들어옴');
 	
 	var filename = 'house.jpg';
 	var infile = fs.createReadStream(filename, {flags: 'r'} );
@@ -29,9 +26,10 @@ server.on('request', function(req, res) {
 	fs.stat(filename, function(err, stats) {
 		filelength = stats.size;
 	});
+	//fs의 stat는 파일정보를 담고있다.
 	
 	// 헤더 쓰기
-	res.writeHead(200, {"Content-Type": "image/png"});
+	res.writeHead(200, {"Content-Type": "image/jpg"});
 
 	// 파일 내용을 스트림에서 읽어 본문 쓰기
 	infile.on('readable', function() {

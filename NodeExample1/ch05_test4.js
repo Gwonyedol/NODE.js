@@ -1,7 +1,6 @@
 
 var http = require('http');
 
-// 웹서버 객체를 만듭니다.
 var server = http.createServer(function(req, res) {
 	console.log('클라이언트 요청이 들어왔습니다.');
 	
