@@ -1,29 +1,26 @@
-// Express 기본 모듈 불러오기
 var express = require('express')
   , http = require('http')
   , path = require('path');
 
-// Express의 미들웨어 불러오기
+//POST방식을 다루는 미들웨어 모듈
 var bodyParser = require('body-parser')
   , static = require('serve-static');
 
-// 익스프레스 객체 생성
 var app = express();
 
-// 기본 속성 설정
 app.set('port', process.env.PORT || 3000);
 
-// body-parser를 이용해 application/x-www-form-urlencoded 파싱
+//body-parser를 이용해 application/x-www-form-urlencoded 파싱
+//body-parser를 이용해 application/json 파싱
+//얘네둘을 써줘야 req.body.id를 이용할 수 있음 
 app.use(bodyParser.urlencoded({ extended: false }))
-
-// body-parser를 이용해 application/json 파싱
 app.use(bodyParser.json())
 
+//static 메소드는 패스를 지정해준다!
 app.use(static(path.join(__dirname, 'public')));
 
-// 미들웨어에서 파라미터 확인
 app.use(function(req, res, next) {
-	console.log('첫번째 미들웨어에서 요청을 처리함.');
+	console.log('첫번째');
 
 	var paramId = req.body.id || req.query.id;
 	var paramPassword = req.body.password || req.query.password;
@@ -36,7 +33,6 @@ app.use(function(req, res, next) {
 });
 
 
-// Express 서버 시작
 http.createServer(app).listen(app.get('port'), function(){
   console.log('서버연결해보장' + app.get('port'));
 });

@@ -3,9 +3,9 @@ var express = require('express')
 
 var app = express();
 
-//미들웨어 : 클라이언트에게 응답(res)을 보낸다
+//미들웨어 : 구조 내에서 중간 처리를 위한 함수(함수들의 꾸러미가 모듈)
+//미들웨어 함수 생명주기 : request - response 응답을 주기로 종료 
 //use함수로 써준다
-//라우팅 : 요청정보(req)를 처리해주는곳
 app.use(function(req,res,next){
     console.log('첫번째 미들웨어에서 요청을 처리했예돌');
 

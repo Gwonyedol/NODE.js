@@ -47,6 +47,9 @@ router.route('/process/login/:name').post(function(req, res) {
 app.use('/', router);
 
 
+
+
+
 // Express 서버 시작
 http.createServer(app).listen(app.get('port'), function(){
   console.log('서버연결해보장' + app.get('port'));

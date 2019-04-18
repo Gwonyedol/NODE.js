@@ -1,33 +1,26 @@
-// Express 기본 모듈 불러오기
+//쿠키와 세션 관리하기
+//쿠키 : 웹브라우저에 저장되는 정보로서 일정기간 저장하고
+//싶을때 사용합니다.
+//세션 : 상태정보를 저장하나 서버에 저장된다
+
 var express = require('express')
   , http = require('http')
   , path = require('path');
 
-// Express의 미들웨어 불러오기
 var bodyParser = require('body-parser')
   , cookieParser = require('cookie-parser')
   , static = require('serve-static')
   , errorHandler = require('errorhandler');
 
-// 에러 핸들러 모듈 사용
 var expressErrorHandler = require('express-error-handler');
 
-
-// 익스프레스 객체 생성
 var app = express();
 
-// 기본 속성 설정
 app.set('port', process.env.PORT || 3000);
 
-// body-parser를 이용해 application/x-www-form-urlencoded 파싱
 app.use(bodyParser.urlencoded({ extended: false }))
-
-// body-parser를 이용해 application/json 파싱
 app.use(bodyParser.json())
-
 app.use('/public', static(path.join(__dirname, 'public')));
-
-// cookie-parser 설정
 app.use(cookieParser());
 
 
@@ -45,8 +38,8 @@ router.route('/process/setUserCookie').get(function(req, res) {
 
 	// 쿠키 설정
 	res.cookie('user', {
-		id: 'mike',
-		name: '소녀시대',
+		id: 'yedol',
+		name: '고양이',
 		authorized: true
 	});
 	
@@ -70,6 +63,6 @@ app.use( errorHandler );
 
 // Express 서버 시작
 http.createServer(app).listen(app.get('port'), function(){
-  console.log('서버 시작!' + app.get('port'));
+  console.log('서버 시작되었다!' + app.get('port'));
 });
 
